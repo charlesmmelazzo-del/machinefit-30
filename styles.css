@@ -1,16 +1,16 @@
 :root {
   color-scheme: light;
-  --ink: #1f2528;
-  --muted: #647077;
-  --line: #d7dee2;
-  --paper: #f6f2ea;
+  --ink: #0b0c0e;
+  --muted: #6b7078;
+  --line: #d9dde3;
+  --paper: #f4f5f7;
   --surface: #ffffff;
-  --green: #13795b;
-  --green-dark: #0d503f;
-  --blue: #315f8c;
-  --amber: #c07a22;
-  --red: #b64b3b;
-  --shadow: 0 18px 45px rgba(31, 37, 40, 0.12);
+  --surface-dark: #111316;
+  --accent: #ff3b30;
+  --accent-dark: #c51f17;
+  --volt: #c7ff2e;
+  --steel: #e9edf2;
+  --shadow: 0 22px 60px rgba(11, 12, 14, 0.14);
 }
 
 * {
@@ -20,7 +20,9 @@
 body {
   margin: 0;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: var(--paper);
+  background:
+    linear-gradient(135deg, rgba(255, 59, 48, 0.08), transparent 28%),
+    linear-gradient(180deg, #f8f9fb 0%, var(--paper) 100%);
   color: var(--ink);
 }
 
@@ -32,28 +34,38 @@ textarea {
 }
 
 button {
-  border: 1px solid var(--green);
-  background: var(--green);
+  border: 1px solid var(--ink);
+  background: var(--ink);
   color: white;
-  min-height: 42px;
-  padding: 0 16px;
-  border-radius: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 4px;
   cursor: pointer;
+  font-weight: 850;
+  text-transform: uppercase;
+  font-size: 0.78rem;
 }
 
 button:hover {
-  background: var(--green-dark);
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
 button.ghost,
 .ghost {
   background: transparent;
-  color: var(--green-dark);
+  color: var(--ink);
 }
 
 button.primary {
-  min-width: 170px;
-  font-weight: 700;
+  min-width: 178px;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+button.primary:hover {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
 }
 
 .topbar {
@@ -61,18 +73,24 @@ button.primary {
   justify-content: space-between;
   gap: 16px;
   align-items: center;
-  padding: 22px clamp(18px, 4vw, 56px);
-  background: var(--surface);
-  border-bottom: 1px solid var(--line);
+  padding: 22px clamp(18px, 4vw, 58px);
+  background: var(--ink);
+  color: white;
+  border-bottom: 4px solid var(--accent);
+}
+
+.brandLockup {
+  display: grid;
+  gap: 3px;
 }
 
 .eyebrow {
   margin: 0 0 4px;
   text-transform: uppercase;
   letter-spacing: 0;
-  font-size: 0.78rem;
-  font-weight: 800;
-  color: var(--green);
+  font-size: 0.8rem;
+  font-weight: 950;
+  color: var(--accent);
 }
 
 h1,
@@ -84,43 +102,52 @@ p {
 
 h1 {
   margin-bottom: 0;
-  font-size: clamp(1.55rem, 4vw, 2.6rem);
+  font-size: clamp(1.65rem, 4vw, 3rem);
+  font-weight: 950;
+  letter-spacing: 0;
+  line-height: 0.98;
+  text-transform: uppercase;
 }
 
 h2 {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
+  line-height: 1.1;
+  text-transform: uppercase;
 }
 
 .streakBox {
-  width: 112px;
-  min-height: 86px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
+  width: 116px;
+  min-height: 88px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
   display: grid;
   place-items: center;
-  background: #f9fbfa;
+  background: #191c20;
 }
 
 .streakBox span {
   display: block;
-  font-size: 2.3rem;
-  font-weight: 900;
+  font-size: 2.45rem;
+  font-weight: 950;
   line-height: 1;
-  color: var(--red);
+  color: var(--volt);
 }
 
 .streakBox small {
-  color: var(--muted);
+  color: #c9ced6;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  font-weight: 800;
 }
 
 main {
-  padding: clamp(16px, 3vw, 32px);
+  padding: clamp(16px, 3vw, 34px);
 }
 
 .heroBand {
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
-  gap: 22px;
+  grid-template-columns: minmax(0, 1.22fr) minmax(260px, 0.78fr);
+  gap: 18px;
   align-items: stretch;
 }
 
@@ -130,32 +157,48 @@ main {
 .dataSection article {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 6px;
   box-shadow: var(--shadow);
 }
 
 .todayPanel {
-  padding: clamp(16px, 3vw, 28px);
+  padding: clamp(16px, 3vw, 30px);
+  border-top: 6px solid var(--ink);
+}
+
+.panelKicker {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.panelKicker span:first-child {
+  color: var(--accent);
 }
 
 .dayPicker {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
+  gap: 6px;
   margin-bottom: 18px;
 }
 
 .dayPicker button {
   padding: 0 8px;
   min-width: 0;
-  background: #eef4f1;
-  color: var(--green-dark);
+  background: var(--steel);
+  color: var(--ink);
   border-color: transparent;
 }
 
 .dayPicker button.active,
 .weekSchedule button.active {
-  background: var(--green);
+  background: var(--ink);
   color: white;
 }
 
@@ -173,10 +216,16 @@ main {
   min-height: 28px;
   padding: 0 10px;
   border-radius: 999px;
-  background: #edf3f7;
-  color: var(--blue);
-  font-size: 0.82rem;
-  font-weight: 700;
+  background: #111316;
+  color: white;
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.sessionMeta span:nth-child(2),
+.workoutCard span {
+  background: var(--accent);
 }
 
 .timerRow,
@@ -194,14 +243,15 @@ main {
 }
 
 #timerDisplay {
-  min-width: 92px;
-  font-size: 1.6rem;
-  font-weight: 900;
+  min-width: 96px;
+  font-size: 1.75rem;
+  font-weight: 950;
+  font-variant-numeric: tabular-nums;
 }
 
 .exerciseList {
   display: grid;
-  gap: 10px;
+  gap: 9px;
 }
 
 .exercise {
@@ -211,8 +261,8 @@ main {
   align-items: center;
   padding: 12px;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fbfcfb;
+  border-radius: 4px;
+  background: #fbfcfe;
 }
 
 .exerciseMain {
@@ -221,20 +271,21 @@ main {
 }
 
 .exerciseNumber {
-  flex: 0 0 32px;
-  width: 32px;
-  height: 32px;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
   display: grid;
   place-items: center;
-  border-radius: 50%;
-  background: var(--amber);
-  color: white;
-  font-weight: 900;
+  border-radius: 4px;
+  background: var(--ink);
+  color: var(--volt);
+  font-weight: 950;
 }
 
 .exercise h3 {
   margin-bottom: 4px;
   font-size: 1rem;
+  text-transform: uppercase;
 }
 
 .exercise p,
@@ -250,7 +301,9 @@ main {
   display: grid;
   gap: 6px;
   color: var(--muted);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 input,
@@ -258,10 +311,17 @@ select,
 textarea {
   width: 100%;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 10px 12px;
   background: white;
   color: var(--ink);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
 }
 
 textarea {
@@ -275,16 +335,17 @@ textarea {
 
 .machineStrip {
   display: grid;
-  gap: 12px;
+  gap: 10px;
 }
 
 .machineStrip img {
   width: 100%;
-  height: 180px;
+  height: 184px;
   object-fit: cover;
-  border-radius: 8px;
-  border: 1px solid var(--line);
+  border-radius: 4px;
+  border: 1px solid #191c20;
   box-shadow: var(--shadow);
+  filter: saturate(0.75) contrast(1.08);
 }
 
 .dashboardGrid,
@@ -300,6 +361,16 @@ textarea {
   padding: 18px;
 }
 
+.dashboardGrid article:first-child {
+  background: var(--surface-dark);
+  color: white;
+  border-color: var(--surface-dark);
+}
+
+.dashboardGrid article:first-child p {
+  color: #d4d9df;
+}
+
 .miniStats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -309,22 +380,38 @@ textarea {
 .miniStats div,
 .loadLog div {
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 12px;
-  background: #fbfcfb;
+  background: #fbfcfe;
+}
+
+.dashboardGrid article:first-child .miniStats div {
+  background: #191c20;
+  border-color: #2a2f35;
 }
 
 .miniStats strong {
   display: block;
-  font-size: 1.8rem;
-  color: var(--green);
+  font-size: 1.9rem;
+  color: var(--accent);
+  font-weight: 950;
+}
+
+.dashboardGrid article:first-child .miniStats strong {
+  color: var(--volt);
 }
 
 .miniStats span,
 .loadLog span {
   display: block;
   color: var(--muted);
-  font-size: 0.86rem;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.dashboardGrid article:first-child .miniStats span {
+  color: #c9ced6;
 }
 
 .loadLog {
@@ -344,7 +431,7 @@ textarea {
   justify-content: space-between;
   gap: 10px;
   text-align: left;
-  background: #f3f7f5;
+  background: #f0f2f5;
   color: var(--ink);
   border-color: var(--line);
   height: auto;
@@ -352,7 +439,8 @@ textarea {
 }
 
 .weekSchedule button.done {
-  border-color: var(--green);
+  border-color: var(--accent);
+  box-shadow: inset 4px 0 0 var(--accent);
 }
 
 .weekSchedule span {
@@ -381,13 +469,14 @@ textarea {
 
 .workoutCard {
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 14px;
-  background: #fbfcfb;
+  background: #fbfcfe;
 }
 
 .workoutCard h3 {
   margin: 10px 0 8px;
+  text-transform: uppercase;
 }
 
 .workoutCard button {
@@ -404,8 +493,8 @@ textarea {
 
 .status {
   min-height: 24px;
-  font-weight: 700;
-  color: var(--green-dark);
+  font-weight: 850;
+  color: var(--accent-dark);
 }
 
 @media (max-width: 980px) {

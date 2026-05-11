@@ -1,5 +1,7 @@
-const STORAGE_KEY = "machinefit30:v1";
-const CUSTOM_DATA_KEY = "machinefit30:workouts";
+const STORAGE_KEY = "me90x:v1";
+const CUSTOM_DATA_KEY = "me90x:workouts";
+const LEGACY_STORAGE_KEY = "machinefit30:v1";
+const LEGACY_CUSTOM_DATA_KEY = "machinefit30:workouts";
 const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 let state = loadState();
@@ -12,7 +14,8 @@ const $ = (id) => document.getElementById(id);
 function loadState() {
   const base = { completions: {}, loads: {}, notes: "", startDate: todayISO() };
   try {
-    return { ...base, ...JSON.parse(localStorage.getItem(STORAGE_KEY)) };
+    const saved = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
+    return { ...base, ...JSON.parse(saved) };
   } catch {
     return base;
   }
@@ -24,7 +27,7 @@ function saveState() {
 
 function loadWorkoutData() {
   try {
-    return JSON.parse(localStorage.getItem(CUSTOM_DATA_KEY)) || window.DEFAULT_WORKOUT_DATA;
+    return JSON.parse(localStorage.getItem(CUSTOM_DATA_KEY) || localStorage.getItem(LEGACY_CUSTOM_DATA_KEY)) || window.DEFAULT_WORKOUT_DATA;
   } catch {
     return window.DEFAULT_WORKOUT_DATA;
   }

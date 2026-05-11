@@ -1,4 +1,4 @@
-# MachineFit 30
+# Me90X
 
 A static workout tracker for 30-minute machine workouts using:
 
